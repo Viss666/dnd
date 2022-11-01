@@ -47,21 +47,25 @@ class Character:
         self.int = self.stats[3]
         self.wis = self.stats[4]
         self.cha = self.stats[5]
-        self.modstats = [self.str,self.dex,self.con,self.int,self.wis,self.cha]
+        self.modstats = {'str':self.str,'dex':self.dex,'con':self.con,'int':self.int,'wis':self.wis,'cha':self.cha}
     #ass_stat can only be str,dex,con,int,wis,cha
-    def check(self,ass_stat):
-        for stat in self.modstats:
-            if ass_stat == stat:
-                ass_stat = stat
-        d20 = [1,2,3,4,5,6,7,8,9,10,
-        11,12,13,14,15,16,17,18,19,20]
-        roll = random.choices(20,1)
-        return roll + self.ass_stat
+    def check(self,stat_string):
+        ass_stat = self.modstats[stat_string]
+        d20 = random.randrange(1,21)
+        if d20 == 1:
+            print("natural 1")
+        elif d20 == 20:
+            print("natural 20")
+        return d20 + ass_stat
     def prof_check(self,ass_stat):
         d20 = [1,2,3,4,5,6,7,8,9,10,
     11,12,13,14,15,16,17,18,19,20]
         roll = random.choices(20,1) + self.prof
         return roll + self.ass_stat
+
+goblin = Character(300,18,5,20,10,10,10,10,10)
+
+print(goblin.check('str'))
     
 
         
