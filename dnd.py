@@ -6,7 +6,6 @@ class Character:
         self.prof = prof
         self.stats = [str,dex,con,int,wis,cha]
         #checks the integer of the stat, assigns a modifier based on integer.
-        #remove redundant statements.
         for i in range(len(self.stats)):
             stat = self.stats[i]
             if stat == 1:
@@ -69,12 +68,19 @@ class Character:
     11,12,13,14,15,16,17,18,19,20]
         roll = random.choices(20,1) + self.prof
         return roll + self.ass_stat
+    
+    def take_dmg(self,dmg):
+        self.hp -= dmg
 
 #goblin character object, 300 health, 5 strength, 20 dexterity, 10 constitution
 # 10 wisdom, 10 charisma. 
-goblin = Character(300,5,20,10,10,10,10,10)
+goblin = Character(300,1,1,10,10,10,10,10)
 
 print(goblin.check('str'))
-    
 
+goblin.take_dmg(40)
+print(goblin.hp)
+goblin.take_dmg(40)
+print(goblin.hp)
         
+print(goblin.check('str'))
